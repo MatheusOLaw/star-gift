@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    background-color: #000000;
+  }
+
+  body {
+    font-family: 'Lora', serif;
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #5b21b6;
+    color: #ffffff;
+  }
+
+  /* Barra de rolagem discreta, condizente com a estética */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #312e81;
+    border-radius: 999px;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Título com leve brilho, usado com moderação nos momentos-chave */
+  .glow-title {
+    text-shadow: 0 0 24px rgba(168, 85, 247, 0.25), 0 0 2px rgba(255, 255, 255, 0.2);
+  }
+
+  /* Textura sutil de "página antiga" para a carta */
+  .page-texture {
+    background-image: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.02), transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(124, 58, 237, 0.05), transparent 45%);
+  }
+}
