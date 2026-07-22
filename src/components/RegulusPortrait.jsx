@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useMemo } from 'react'
+import regulusPhoto from '../assets/regulus.jpg'
 
 /**
  * Retrato artístico de Regulus, feito inteiramente em CSS (gradientes + linhas
@@ -29,35 +30,23 @@ export default function RegulusPortrait() {
       transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1] }}
       className="relative aspect-[16/10] w-full overflow-hidden border border-white/10 bg-black sm:aspect-[21/9]"
     >
-      {/* fundo profundo com leve névoa violeta, quase imperceptível */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse at 50% 50%, rgba(91,33,182,0.10), #000000 62%)',
-        }}
-      />
+      {/* fotografia real da estrela, com zoom lento contínuo */}
+<motion.img
+  src={regulusPhoto}
+  alt="Fotografia da estrela Regulus"
+  className="absolute inset-0 h-full w-full object-cover"
+  animate={{ scale: [1, 1.06, 1] }}
+  transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
+/>
 
-      {/* núcleo brilhante da estrela, com zoom lento contínuo */}
-      <motion.div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-        animate={{ scale: [1, 1.06, 1] }}
-        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <div
-          className="h-40 w-40 rounded-full sm:h-56 sm:w-56"
-          style={{
-            background:
-              'radial-gradient(circle, #ffffff 0%, #d6c7fb 18%, #A855F7 38%, rgba(124,58,237,0.35) 60%, transparent 75%)',
-            boxShadow: '0 0 120px 40px rgba(168,85,247,0.18)',
-          }}
-        />
-        {/* linhas de difração, como em fotografias astronômicas reais */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <span className="absolute h-[2px] w-[420px] bg-gradient-to-r from-transparent via-white/50 to-transparent sm:w-[560px]" />
-          <span className="absolute h-[420px] w-[2px] bg-gradient-to-b from-transparent via-white/50 to-transparent sm:h-[560px]" />
-        </div>
-      </motion.div>
+{/* leve véu escuro sobre a foto, pra manter a paleta e o clima do site */}
+<div
+  className="absolute inset-0"
+  style={{
+    background:
+      'linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.55)), radial-gradient(ellipse at 50% 50%, rgba(91,33,182,0.12), transparent 70%)',
+  }}
+/>
 
       {/* estrelas de fundo esparsas, mais densas nas bordas */}
       {scatteredStars.map((star, i) => (
